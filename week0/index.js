@@ -9,18 +9,33 @@ var scene = new THREE.Scene();
  * 创建网格模型
  */
 var geometry0 = new THREE.SphereGeometry(50, 40, 40); //创建一个球体几何对象
+// const material0 = new THREE.MeshLambertMaterial({
+//   color: 0xff0000,
+// });
 const material0 = new THREE.MeshLambertMaterial({
   color: 0xff0000,
+  transparent: false,
+  opacity: 0.5,
 });
+// const material0 = new THREE.MeshPhongMaterial({
+//   color:0x0000ff,
+//   specular:0x4488ee,
+//   shininess:12
+// })
 const mesh0 = new THREE.Mesh(geometry0, material0);
 mesh0.position.set(0, 75, 0);
 scene.add(mesh0);
 
 var geometry = new THREE.BoxGeometry(200, 50, 150); //创建一个立方体几何对象Geometry
-var material = new THREE.MeshLambertMaterial({
-  color: 0x0000ff,
-}); //材质对象Material
-var mesh = new THREE.Mesh(geometry, material); //网格模型对象Mesh
+// var material = new THREE.MeshLambertMaterial({
+//   color: 0x0000ff,
+// }); //材质对象Material
+var sphereMaterial=new THREE.MeshPhongMaterial({
+  color:0x0000ff,
+  specular:0x4488ee,
+  shininess:12
+})
+var mesh = new THREE.Mesh(geometry, sphereMaterial); //网格模型对象Mesh
 scene.add(mesh); //网格模型添加到场景中
 
 /**
@@ -31,9 +46,14 @@ var point = new THREE.PointLight(0xffffff);
 point.position.set(400, 200, 300); //点光源位置
 scene.add(point); //点光源添加到场景中
 
+
+var point1 = new THREE.PointLight(0xffffff);
+point1.position.set(-400, -200, -300); //点光源位置
+scene.add(point1); //点光源添加到场景中
+
 //环境光
 var ambient = new THREE.AmbientLight(0x000000);
-scene.add(ambient);
+// scene.add(ambient);
 
 console.log(scene);
 console.log(scene.children);
